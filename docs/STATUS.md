@@ -11,6 +11,6 @@
 - [x] Mobile navigation and responsive grids
 - [x] Standalone build and validation scripts added
 - [x] Dedicated validation and GitHub Pages workflows configured
-- [ ] Merge standalone migration pull request
-- [ ] Confirm GitHub Pages deployment
-- [ ] Run post-deployment visual review at the live URL
+- [x] Standalone migration pull request merged
+- [x] GitHub Pages deployment confirmed
+- [x] Post-deployment responsive, route, portrait, and accessibility smoke tests passed
