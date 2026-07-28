@@ -44,6 +44,7 @@ link.classList.toggle("active", matches);
 });
 topnav.classList.remove("open");
 menuButton.setAttribute("aria-expanded", "false");
+menuButton.setAttribute("aria-label", "Open navigation");
 }
 function pageHeader(title, kicker, stamp = "Confidential") {
 return `<header class="page-header">
@@ -348,6 +349,7 @@ main.focus({ preventScroll: true });
 menuButton.addEventListener("click", () => {
 const open = topnav.classList.toggle("open");
 menuButton.setAttribute("aria-expanded", String(open));
+menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
 });
 window.addEventListener("hashchange", render);
 window.addEventListener("popstate", render);
