@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080c0d" />
+  <meta name="description" content="A Leverage-inspired intelligence dossier and campaign archive for an eight-member D&D heist crew." />
+  <title>Heist Crew Archive</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#crew" aria-label="Heist Crew Archive home">
+        <span class="brand-mark">HCA</span>
+        <span class="brand-copy"><strong>Heist Crew</strong><span>Archive</span></span>
+      </a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a href="#crew" data-route="crew">Crew</a>
+        <a href="#dossiers" data-route="dossiers">Dossiers</a>
+        <a href="#operations" data-route="operations">Operations</a>
+        <a href="#whiteboard" data-route="whiteboard">Whiteboard</a>
+        <a href="#archive" data-route="archive">Archive</a>
+      </nav>
+      <div class="crew-status" aria-label="Crew status">
+        <span>Crew status</span><strong><i></i> Active</strong>
+      </div>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </header>
+
+    <aside class="sidebar" aria-label="Archive navigation">
+      <section>
+        <p class="eyebrow">Crew</p>
+        <a href="#crew">Roster</a>
+        <a href="#dossiers">Dossiers</a>
+        <a href="#relationships">Relationships</a>
+      </section>
+      <section>
+        <p class="eyebrow">Operations</p>
+        <a href="#operations">Operations archive</a>
+        <a href="#whiteboard">Working whiteboard</a>
+      </section>
+      <section>
+        <p class="eyebrow">Archive</p>
+        <a href="#archive/assets">Assets</a>
+        <a href="#archive/intel">Intel</a>
+        <a href="#archive/timeline">Timeline</a>
+      </section>
+      <div class="classification">
+        <strong>Confidential</strong>
+        <span>For authorized crew only.</span>
+        <small>v0.1.0</small>
+      </div>
+    </aside>
+
+    <main id="main" tabindex="-1"></main>
+
+    <footer class="operation-bar" aria-label="Current operation">
+      <div><span>Current operation</span><strong>No Active Operation</strong></div>
+      <div><span>Objective</span><strong>—</strong></div>
+      <div><span>Location</span><strong>—</strong></div>
+      <div><span>Threat level</span><strong>Unknown</strong></div>
+    </footer>
+  </div>
+
+  <script src="./crew-data.js"></script>
+  <script src="./data/conman.js"></script>
+  <script src="./data/cleaner.js"></script>
+  <script src="./data/hacker.js"></script>
+  <script src="./data/hitter.js"></script>
+  <script src="./data/vent-guy.js"></script>
+  <script src="./data/driver.js"></script>
+  <script src="./data/distraction.js"></script>
+  <script src="./data/pickpocket.js"></script>
+  <script>
+    const approvedCleaner = window.HEIST_CREW_DATA.crew.find(member => member.key === "cleaner");
+    if (approvedCleaner) {
+      approvedCleaner.portrait = "portraits/cleaner.svg";
+      approvedCleaner.visual = "Black Reborn woman of subtly elven ancestry, with close braids, haunted eyes, faint deathless seams, restrained medical-monastic clothing, and a calm forensic presence.";
+    }
+  </script>
+  <script src="./app.js"></script>
+</body>
+</html>
