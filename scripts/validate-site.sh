@@ -15,6 +15,7 @@ required_files=(
   data/distraction.js
   data/pickpocket.js
   portraits/conman.svg
+  portraits/conman-reveal.svg
   portraits/cleaner.svg
   portraits/hacker.svg
   portraits/hitter.svg
@@ -33,6 +34,17 @@ done
 
 grep -q "No Active Operation" index.html
 grep -q 'const tabs = \["overview", "abilities", "equipment", "spells", "notes", "relationships"\]' app.js
+grep -q "Reveal identity" app.js
+
+if grep -R "Verified feature on the current character sheet\\|Verified action or limited technique" data; then
+  echo "Generic feature or action placeholder remains in character data." >&2
+  exit 1
+fi
+
+if grep -q "Species design" app.js; then
+  echo "Removed species-design prose is still present." >&2
+  exit 1
+fi
 
 if grep -R "/f4-prestige-archive/" index.html app.js styles.css crew-data.js data portraits; then
   echo "Old F4 repository base path remains in deployable files." >&2

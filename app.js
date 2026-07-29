@@ -5,7 +5,6 @@ const main = document.querySelector("#main");
 const topnav = document.querySelector(".topnav");
 const menuButton = document.querySelector(".menu-button");
 const navLinks = [...document.querySelectorAll("[data-route]")];
-const sidebarLinks = [...document.querySelectorAll(".sidebar a")];
 const crewByKey = new Map(data.crew.map(member => [member.key, member]));
 const tabs = ["overview", "abilities", "equipment", "spells", "notes", "relationships"];
 const state = { dossierTab: "overview" };
@@ -37,11 +36,6 @@ navLinks.forEach(link => {
 const matches = route === "dossier" ? link.dataset.route === "dossiers" : link.dataset.route === route;
 link.toggleAttribute("aria-current", matches);
 });
-sidebarLinks.forEach(link => {
-const target = link.getAttribute("href").replace(/^#/, "").split("/")[0];
-const matches = route === "dossier" ? target === "dossiers" : target === route;
-link.classList.toggle("active", matches);
-});
 topnav.classList.remove("open");
 menuButton.setAttribute("aria-expanded", "false");
 menuButton.setAttribute("aria-label", "Open navigation");
@@ -55,7 +49,10 @@ return `<header class="page-header">
 function crewCard(member) {
 return `<article class="crew-card" style="--card-accent:${member.accent}">
 <button type="button" data-open-dossier="${member.key}" aria-label="Open ${esc(member.display)} dossier">
-<img src="${member.portrait}" alt="${esc(member.display)} — ${esc(member.visual)}" />
+<span class="card-portrait${member.key === "conman" ? " conman-transition" : ""}" style="--portrait-position:${esc(member.portraitPosition || "50% 18%")}">
+<img class="portrait-primary" src="${member.portrait}" alt="${esc(member.display)} — ${esc(member.visual)}" />
+${member.key === "conman" ? `<img class="portrait-reveal" src="portraits/conman-reveal.svg" alt="" aria-hidden="true" />` : ""}
+</span>
 <span class="crew-card-copy">
 <h3>${esc(member.display)}</h3>
 <p>${esc(member.race)} · ${esc(member.classSplit)}</p>
@@ -119,8 +116,6 @@ return `<div class="dossier-grid">
 <section class="panel">
 <h2>Operational profile</h2>
 <p>${esc(member.summary)}</p>
-<h3>Species design</h3>
-<p>${esc(member.visual)}</p>
 <h3>Background</h3>
 <p>${esc(member.background)} · ${esc(member.backgroundFeature)}</p>
 </section>
@@ -196,9 +191,15 @@ const grouped = Map.groupBy ? Map.groupBy(member.spells, spell => spell.level) :
 const levels = grouped instanceof Map ? [...grouped.entries()] : Object.entries(grouped);
 const rows = levels.sort((a,b) => Number(a[0])-Number(b[0])).map(([level, spells]) => `<details ${Number(level) <= 1 ? "open" : ""}>
 <summary><span>${Number(level) === 0 ? "Cantrips" : `Level ${level}`} <small>· ${spells.length} options</small></span></summary>
-<div class="detail-body"><div class="table-wrap"><table><thead><tr><th>Spell</th><th>Source</th><th>Flags</th></tr></thead><tbody>
-${spells.map(spell => `<tr><td><strong>${esc(spell.name)}</strong></td><td>${esc(spell.source)}</td><td>${[spell.prepared && "Prepared", spell.concentration && "Concentration", spell.ritual && "Ritual", spell.freeUses && `${spell.freeUses} free use`].filter(Boolean).join(" · ") || "—"}</td></tr>`).join("")}
-</tbody></table></div></div></details>`).join("");
+<div class="detail-body spell-list">
+${spells.map(spell => {
+const flags = [spell.prepared && "Prepared", spell.concentration && "Concentration", spell.ritual && "Ritual", spell.freeUses && `${spell.freeUses} free use`].filter(Boolean);
+return `<details class="spell-entry">
+<summary><span><strong>${esc(spell.name)}</strong><small>${esc(spell.source || "Character sheet")}${flags.length ? ` · ${esc(flags.join(" · "))}` : ""}</small></span></summary>
+<div class="detail-body spell-description">${esc(spell.description || "No description was exposed by the current character record.")}</div>
+</details>`;
+}).join("")}
+</div></details>`).join("");
 return `<section class="panel"><h2>Spell library</h2><div class="details-stack">${rows}</div></section>`;
 }
 function notesPanel(member) {
@@ -248,7 +249,11 @@ main.style.setProperty("--character-accent", member.accent);
 main.innerHTML = `
 <section class="dossier-heading" style="--character-accent:${member.accent}">
 <figure class="dossier-portrait">
-<img src="${member.portrait}" alt="${esc(member.display)} — ${esc(member.visual)}" />
+<div class="dossier-portrait-frame${member.key === "conman" ? " conman-transition" : ""}" style="--portrait-position:${esc(member.portraitPosition || "50% 18%")}">
+<img class="portrait-primary" src="${member.portrait}" alt="${esc(member.display)} — ${esc(member.visual)}" />
+${member.key === "conman" ? `<img class="portrait-reveal" src="portraits/conman-reveal.svg" alt="" aria-hidden="true" />` : ""}
+</div>
+${member.key === "conman" ? `<button class="reveal-control" type="button" data-reveal-identity aria-pressed="false">Reveal identity</button>` : ""}
 <figcaption>${esc(member.race)} · ${esc(member.classSplit)} · Level ${member.level}</figcaption>
 </figure>
 <header class="dossier-title">
@@ -272,6 +277,15 @@ renderDossier(member, next);
 updateNavigation("dossier");
 window.scrollTo({ top: 0, behavior: "smooth" });
 }));
+const revealControl = main.querySelector("[data-reveal-identity]");
+if (revealControl) {
+revealControl.addEventListener("click", () => {
+const frame = main.querySelector(".dossier-portrait-frame");
+const revealed = frame.classList.toggle("reveal-active");
+revealControl.setAttribute("aria-pressed", String(revealed));
+revealControl.textContent = revealed ? "Show primary portrait" : "Reveal identity";
+});
+}
 }
 function renderOperations() {
 setAccent(null);
