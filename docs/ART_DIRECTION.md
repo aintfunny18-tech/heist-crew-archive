@@ -14,3 +14,5 @@ Species remains visually legible rather than cosmetic:
 - Pickpocket — Lightfoot Halfling; compact proportions, understated clothing, curls, and discreet tools.
 
 One canonical portrait file is reused everywhere in the interface. No separate thumbnail generation is permitted.
+
+Each primary portrait uses a character-specific focal position rather than a universal center crop. The Conman has one approved alternate reveal portrait; the normal portrait remains the default.
