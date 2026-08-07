@@ -5,6 +5,9 @@ required_files=(
   index.html
   app.js
   archive-framing.js
+  player-profiles.js
+  player-profiles.css
+  selection-build-polish.js
   styles.css
   crew-data.js
   data/conman.js
@@ -33,10 +36,18 @@ for file in "${required_files[@]}"; do
   }
 done
 
-grep -q "No Active Operation" index.html
+grep -q "Character Selection" index.html
+grep -q "player-profiles.js" index.html
+grep -q "selection-build-polish.js" index.html
 grep -q 'const tabs = \["overview", "abilities", "equipment", "spells", "notes", "relationships"\]' app.js
 grep -q "Reveal identity" app.js
+grep -q "Role & Build Showcase" archive-framing.js
 grep -q "Eight dossiers. One crew to assemble. Impossible jobs ahead." archive-framing.js
+
+node --check app.js
+node --check archive-framing.js
+node --check player-profiles.js
+node --check selection-build-polish.js
 
 if grep -R "Verified feature on the current character sheet\\|Verified action or limited technique" data; then
   echo "Generic feature or action placeholder remains in character data." >&2
@@ -48,7 +59,7 @@ if grep -q "Species design" app.js; then
   exit 1
 fi
 
-if grep -R "/f4-prestige-archive/" index.html app.js archive-framing.js styles.css crew-data.js data portraits; then
+if grep -R "/f4-prestige-archive/" index.html app.js archive-framing.js player-profiles.js player-profiles.css selection-build-polish.js styles.css crew-data.js data portraits; then
   echo "Old F4 repository base path remains in deployable files." >&2
   exit 1
 fi
@@ -56,4 +67,7 @@ fi
 bash scripts/build-site.sh
 test -f _site/index.html
 test -f _site/archive-framing.js
+test -f _site/player-profiles.js
+test -f _site/player-profiles.css
+test -f _site/selection-build-polish.js
 test -f _site/portraits/cleaner.svg
