@@ -66,8 +66,8 @@ setAccent(null);
 main.innerHTML = `
 <section class="hero-layout">
 <div class="hero-panel">
-<strong>Heist Crew Archive</strong>
-<h2>The Heist<br>Crew</h2>
+<strong>The Crew Archive</strong>
+<h2>The<br>Crew</h2>
 <p>Eight operatives. One impossible job.</p>
 </div>
 <aside class="status-panel">
