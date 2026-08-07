@@ -24,12 +24,17 @@
   if (cleaner?.summary) {
     cleaner.summary = cleaner.summary.replace(
       "Once secured, the target is restrained and cannot use extradimensional movement to escape.",
-      "Once secured, the shackles function as exceptionally difficult-to-break manacles and prevent the target from using extradimensional movement to escape."
+      "Under the campaign variant used for this build, once the shackles are applied the target is restrained and cannot use extradimensional movement to escape. The published removal, escape, and breaking rules otherwise stay the same."
+    );
+    cleaner.summary = cleaner.summary.replace(
+      "Once secured, the shackles function as exceptionally difficult-to-break manacles and prevent the target from using extradimensional movement to escape.",
+      "Under the campaign variant used for this build, once the shackles are applied the target is restrained and cannot use extradimensional movement to escape. The published removal, escape, and breaking rules otherwise stay the same."
     );
   }
 
   const shackles = cleaner?.magicItems?.find(item => item.name === "Dimensional Shackles");
   if (shackles) {
-    shackles.effect = "Can be placed as an action on an incapacitated Small-to-Large creature; functions as manacles and prevents the bound creature from using extradimensional movement, including teleportation and planar travel.";
+    shackles.effect = "Campaign variant: can be placed as normal on an incapacitated Small, Medium, or Large creature. While worn, the creature is restrained and cannot use extradimensional movement, including teleportation and planar travel. All other published removal, escape, and breaking rules are unchanged.";
+    shackles.campaignVariant = true;
   }
 })();
