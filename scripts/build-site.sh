@@ -11,6 +11,8 @@ cp \
   player-profiles.js \
   player-profiles.css \
   selection-build-polish.js \
+  ranking-tool.js \
+  ranking-tool.css \
   styles.css \
   crew-data.js \
   .nojekyll \
