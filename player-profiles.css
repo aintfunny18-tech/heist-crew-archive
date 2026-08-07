@@ -1,0 +1,19 @@
+/* Player-selection profile presentation */
+
+/* The first-person line is the dossier intro; keep the longer build write-up in Overview. */
+.dossier-title > p:not(.role) {
+  display: none;
+}
+
+.dossier-title blockquote {
+  margin-top: 0.9rem;
+}
+
+/* Profile text is stored as two newline-separated paragraphs in the canonical data patch. */
+.dossier-grid .panel > p {
+  white-space: pre-line;
+}
+
+.dossier-grid .panel:first-child > p:first-of-type {
+  line-height: 1.72;
+}
