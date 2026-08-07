@@ -4,6 +4,7 @@ set -euo pipefail
 required_files=(
   index.html
   app.js
+  archive-framing.js
   styles.css
   crew-data.js
   data/conman.js
@@ -35,6 +36,7 @@ done
 grep -q "No Active Operation" index.html
 grep -q 'const tabs = \["overview", "abilities", "equipment", "spells", "notes", "relationships"\]' app.js
 grep -q "Reveal identity" app.js
+grep -q "Eight dossiers. One crew to assemble. Impossible jobs ahead." archive-framing.js
 
 if grep -R "Verified feature on the current character sheet\\|Verified action or limited technique" data; then
   echo "Generic feature or action placeholder remains in character data." >&2
@@ -46,11 +48,12 @@ if grep -q "Species design" app.js; then
   exit 1
 fi
 
-if grep -R "/f4-prestige-archive/" index.html app.js styles.css crew-data.js data portraits; then
+if grep -R "/f4-prestige-archive/" index.html app.js archive-framing.js styles.css crew-data.js data portraits; then
   echo "Old F4 repository base path remains in deployable files." >&2
   exit 1
 fi
 
 bash scripts/build-site.sh
 test -f _site/index.html
+test -f _site/archive-framing.js
 test -f _site/portraits/cleaner.svg
