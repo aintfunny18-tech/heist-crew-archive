@@ -1,0 +1,193 @@
+/* Player-facing role ranking helper */
+.selection-ranking-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.selection-ranking-action span {
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.45;
+}
+
+.selection-ranking-button {
+  flex: 0 0 auto;
+  border-color: var(--gold);
+  color: var(--gold-bright);
+  padding: .72rem 1rem;
+}
+
+.ranking-dialog {
+  width: min(720px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 1px solid var(--gold);
+  background: #0a0f10;
+  color: var(--paper);
+  box-shadow: 0 30px 90px rgba(0,0,0,.65);
+}
+
+.ranking-dialog::backdrop {
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(4px);
+}
+
+.ranking-shell {
+  padding: 1.25rem;
+}
+
+.ranking-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.ranking-header .eyebrow {
+  display: block;
+  margin-bottom: .3rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .64rem;
+}
+
+.ranking-header h2 {
+  margin: 0;
+  font: 700 clamp(1.7rem,4vw,2.5rem)/1 Georgia, serif;
+}
+
+.ranking-header p {
+  margin: .55rem 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.ranking-close {
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.45rem;
+  cursor: pointer;
+}
+
+.ranking-close:hover,
+.ranking-close:focus-visible {
+  color: var(--paper);
+  border-color: var(--gold);
+}
+
+.ranking-fields {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: .85rem;
+  margin-top: 1rem;
+}
+
+.ranking-field {
+  display: grid;
+  gap: .35rem;
+}
+
+.ranking-field > span,
+.ranking-preview-wrap > label {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .64rem;
+}
+
+.ranking-field small {
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ranking-field input,
+.ranking-field select,
+.ranking-preview-wrap textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: var(--paper);
+  padding: .72rem .75rem;
+}
+
+.ranking-field input:focus,
+.ranking-field select:focus,
+.ranking-preview-wrap textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  outline-offset: 1px;
+}
+
+.ranking-name {
+  grid-column: 1 / -1;
+}
+
+.ranking-error {
+  margin: .9rem 0 0;
+  padding: .7rem .8rem;
+  border: 1px solid rgba(239,68,68,.45);
+  background: rgba(239,68,68,.08);
+  color: #f3b4b4;
+  line-height: 1.45;
+}
+
+.ranking-preview-wrap {
+  display: grid;
+  gap: .4rem;
+  margin-top: 1rem;
+}
+
+.ranking-preview-wrap textarea {
+  resize: vertical;
+  min-height: 9rem;
+  line-height: 1.5;
+}
+
+.ranking-actions {
+  display: flex;
+  gap: .65rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.ranking-actions .button:first-child {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.ranking-secondary {
+  color: var(--muted);
+}
+
+@media (max-width: 680px) {
+  .selection-ranking-action {
+    display: grid;
+    justify-items: start;
+  }
+
+  .ranking-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-name {
+    grid-column: auto;
+  }
+
+  .ranking-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
