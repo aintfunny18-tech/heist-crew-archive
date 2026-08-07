@@ -1,6 +1,6 @@
-# Heist Crew Archive
+# The Crew Archive
 
-A standalone, static Leverage-inspired fantasy intelligence dossier for an eight-member D&D heist crew.
+A standalone, static Leverage-inspired fantasy intelligence dossier for an eight-member D&D crew built for heists.
 
 ## Public path
 

@@ -219,18 +219,19 @@ td strong { color: var(--paper); }
 }
 @media (max-width: 900px) {
   #app-shell { grid-template-columns: 1fr; grid-template-rows: 64px auto 62px; }
-  .topbar { grid-template-columns: 1fr auto 52px; }
-  .brand { border-right: 0; }
+  .topbar { grid-template-columns: minmax(0,1fr) 52px; }
+  .brand { grid-column: 1; border-right: 0; min-width: 0; }
   .topnav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: #070b0c; flex-direction: column; border-bottom: 1px solid var(--line); }
   .topnav.open { display: flex; }
   .topnav a { min-height: 52px; justify-content: center; }
   .crew-status { display: none; }
-  .menu-button { display: block; }
+  .menu-button { display: block; grid-column: 2; }
   #main { grid-column: 1; grid-row: 2; padding: 1rem; }
   .operation-bar { grid-row: 3; grid-template-columns: 1.4fr 1fr 1fr; }
   .operation-bar div:last-child { display: none; }
   .hero-layout { grid-template-columns: 1fr; }
   .dossier-heading { grid-template-columns: 250px 1fr; }
+  .dossier-tabs { top: 70px; }
   .archive-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 680px) {
@@ -248,13 +249,30 @@ td strong { color: var(--paper); }
   .page-header { align-items: start; }
   .page-header .stamp { display: none; }
 }
-@media (max-width: 430px) {
-  .brand-copy { display: none; }
+@media (max-width: 560px) {
+  .brand { padding: 0 .85rem; gap: .6rem; }
+  .brand-mark { font-size: 1.7rem; }
+  .brand-copy { font-size: .58rem; letter-spacing: .11em; }
+  .brand-copy strong { font-size: .66rem; }
+  #main { padding: .75rem; }
+  .hero-panel { min-height: 190px; padding: 1.1rem; }
   .roster-grid { grid-template-columns: 1fr; }
-  .crew-card { display: grid; grid-template-columns: 128px 1fr; }
-  .card-portrait { height: 100%; aspect-ratio: auto; }
-  .crew-card-copy { min-height: 128px; }
-  .operation-bar strong { font-size: .8rem; }
+  .crew-card { display: block; }
+  .crew-card button {
+    display: grid;
+    grid-template-columns: minmax(118px, 39%) minmax(0,1fr);
+    min-height: 160px;
+    align-items: stretch;
+  }
+  .card-portrait { height: 100%; min-height: 160px; aspect-ratio: auto; }
+  .crew-card-copy { min-height: 0; padding: .85rem .8rem; align-content: center; gap: .28rem; }
+  .crew-card h3 { font-size: .92rem; }
+  .crew-card p { font-size: .75rem; }
+  .crew-card small { font-size: .7rem; }
+  .operation-bar { grid-template-columns: 1fr; }
+  .operation-bar div { padding: .65rem 1rem; border-right: 0; }
+  .operation-bar div:not(:first-child) { display: none; }
+  .operation-bar strong { font-size: .85rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
