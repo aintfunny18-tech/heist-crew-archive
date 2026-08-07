@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#080c0d" />
-  <meta name="description" content="A Leverage-inspired intelligence archive of eight prospective D&D heist operatives." />
+  <meta name="description" content="A fantasy intelligence archive for eight selectable D&D heist specialists." />
   <title>The Crew Archive</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./player-profiles.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -48,6 +49,7 @@
   <script src="./data/driver.js"></script>
   <script src="./data/distraction.js"></script>
   <script src="./data/pickpocket.js"></script>
+  <script src="./player-profiles.js"></script>
   <script>
     const approvedCleaner = window.HEIST_CREW_DATA.crew.find(member => member.key === "cleaner");
     if (approvedCleaner) {
