@@ -1,19 +1,179 @@
 /* Player-selection profile presentation */
 
-/* The first-person line is the dossier intro; keep the longer build write-up in Overview. */
+/* Keep the dossier hero fast to scan; the full build showcase belongs in Overview. */
 .dossier-title > p:not(.role) {
   display: none;
 }
 
 .dossier-title blockquote {
   margin-top: 0.9rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
 }
 
-/* Profile text is stored as two newline-separated paragraphs in the canonical data patch. */
-.dossier-grid .panel > p {
-  white-space: pre-line;
+/* Turn the long summary into a readable, real two-paragraph showcase. */
+.profile-copy {
+  display: grid;
+  gap: 1rem;
 }
 
-.dossier-grid .panel:first-child > p:first-of-type {
-  line-height: 1.72;
+.profile-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .96rem;
+  line-height: 1.78;
+}
+
+.profile-copy p:first-child {
+  color: var(--paper);
+}
+
+/* Give the build showcase enough width on desktop without sacrificing quick-reference panels. */
+@media (min-width: 1181px) {
+  .overview-grid .profile-panel {
+    grid-column: span 2;
+    grid-row: span 2;
+    padding: 1.25rem 1.35rem;
+  }
+
+  .overview-grid .identity-panel,
+  .overview-grid .skills-panel {
+    grid-column: 3;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1180px) {
+  .overview-grid .profile-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Selection briefing on the roster landing page. */
+.selection-brief {
+  margin: 0 0 1.35rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(120deg, rgba(201,169,109,.07), transparent 42%),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.selection-brief-header {
+  display: grid;
+  grid-template-columns: minmax(260px,.8fr) minmax(320px,1.2fr);
+  gap: 1.5rem;
+  align-items: end;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.selection-brief .eyebrow {
+  display: block;
+  margin-bottom: .35rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: .65rem;
+}
+
+.selection-brief h2 {
+  margin: 0;
+  font: 700 clamp(1.55rem,3vw,2.4rem)/1.05 Georgia, serif;
+  letter-spacing: -.025em;
+}
+
+.selection-brief-header > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.selection-steps {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: .8rem;
+  margin-top: .9rem;
+}
+
+.selection-steps article {
+  min-width: 0;
+  padding: .9rem;
+  border: 1px solid var(--line-soft);
+  background: rgba(255,255,255,.018);
+}
+
+.selection-steps article > strong {
+  color: var(--gold);
+  font: 700 1.25rem/1 Georgia, serif;
+  opacity: .85;
+}
+
+.selection-steps h3 {
+  margin: .45rem 0 .35rem;
+  color: var(--paper);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .75rem;
+}
+
+.selection-steps p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: .78rem;
+}
+
+/* Surface the first-person line while players are comparing roster cards. */
+.card-quote {
+  display: block;
+  margin-top: .16rem;
+  color: var(--card-accent);
+  font: italic .86rem/1.35 Georgia, serif;
+}
+
+.card-function {
+  display: block;
+  margin-top: .08rem;
+}
+
+.character-sheet-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.selection-bar strong:first-letter {
+  text-transform: none;
+}
+
+@media (max-width: 800px) {
+  .selection-brief-header {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    align-items: start;
+  }
+
+  .selection-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .selection-brief {
+    padding: 1rem;
+  }
+
+  .profile-copy p {
+    font-size: .93rem;
+    line-height: 1.72;
+  }
+
+  .card-quote {
+    font-size: .8rem;
+  }
 }
