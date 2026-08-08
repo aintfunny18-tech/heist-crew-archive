@@ -56,7 +56,7 @@ function applyArchiveFraming() {
   if (status) {
     setText(status.querySelector("h3"), "Selection status");
     setText(status.querySelector("strong"), "Roster Under Review");
-    setText(status.querySelector("p"), "Eight operative dossiers are under consideration. Review the builds, rank the roles that interest you, and we will build the people around the selected chassis.");
+    setText(status.querySelector("p"), "Eight operative dossiers have been assembled for review. Compare the builds, rank the roles that interest you, and help determine which specialists make the crew.");
   }
 
   const rosterHeading = document.querySelector("#roster-heading");
@@ -81,12 +81,12 @@ function applySelectionBrief() {
         <span class="eyebrow">Character selection</span>
         <h2>Pick the job you want to be great at.</h2>
       </div>
-      <p>Each option is a finished level-10 chassis built to excel at a particular part of a heist. You are choosing the toolkit, not being handed a personality.</p>
+      <p>Each dossier presents a finished level-10 character build designed to excel at a particular part of a heist. You are choosing a role and a mechanical toolkit; the character's personality, history, appearance, and relationships remain yours to define.</p>
     </header>
     <div class="selection-steps">
       <article><strong>01</strong><h3>Review</h3><p>Open every dossier. Overview starts with the two-paragraph role and build showcase; the other tabs expose the verified stats, equipment, abilities, and spells behind it.</p></article>
       <article><strong>02</strong><h3>Rank</h3><p>Submit a first, second, and third choice, plus an optional hard no. Rank the role you most want to play, not the one you think the crew "needs."</p></article>
-      <article><strong>03</strong><h3>Build the person</h3><p>After assignment, the chassis becomes the foundation for the character's history, personality, relationships, and the details that make them yours.</p></article>
+      <article><strong>03</strong><h3>Make it yours</h3><p>Once roles are assigned, the selected build becomes your character. You decide who they are, where they came from, how they connect to the crew, and everything the sheet does not answer.</p></article>
     </div>`;
 
   rosterSection.parentNode.insertBefore(brief, rosterSection);
@@ -114,11 +114,11 @@ function applyDossiersFraming() {
 
   const header = document.querySelector(".page-header");
   setText(header?.querySelector("h1"), "Candidate Dossiers");
-  setText(header?.querySelector("p"), "Review the builds before ranking your choices");
+  setText(header?.querySelector("p"), "Review the assembled files before ranking your choices");
   setText(header?.querySelector(".stamp"), "Selection");
 
   const note = document.querySelector(".source-note");
-  setText(note, "Start with Overview for the role and build showcase. The remaining tabs expose the verified sheet details, equipment, spells, and source character sheet.");
+  setText(note, "These dossiers were assembled to compare eight specialists for the final crew. Start with Overview for the role and build showcase; the remaining tabs expose the verified sheet details, equipment, spells, and source character sheet.");
 }
 
 function applyDossierProfile() {
